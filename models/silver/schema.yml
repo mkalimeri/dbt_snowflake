@@ -1,0 +1,87 @@
+version: 1
+
+models:
+  - name: silver__dim_event
+    description: This table stores data about venues for specific events
+    config:
+      database: silver
+      schema: dimensions
+    columns:
+      - name: eventid
+        description: "The unique identifier for an event."
+        data_tests:
+          - not_null
+      - name: venueid
+        description: "The unique identifier for a venue."
+        data_tests:
+          - not_null
+      - name: eventdate
+        description: "The date the event takes place"
+        data_tests:
+          - not_null
+      - name: eventname
+        description: "The name of the event"
+      - name: venuename
+        description: "The name of the venue"
+      - name: pricelevel
+        description: "The price level of a specific type of seat"
+      - name: section
+        description: "A specific section of the venue"
+        data_tests:
+          - not_null
+      - name: rownumber
+        description: "The number (identification) of a row in the venue"
+        data_tests:
+          - not_null
+      - name: seat
+        description: "A specific seat in a row in the venue"
+
+  - name: silver__fact_sold_transactions
+    description: This table integrates inventory, venue, and event information and includes a column for revenue for each transaction.
+    config:
+      database: silver
+      schema: facts
+    columns:
+      - name: listingid
+        description: "The unique identifier for a transaction."
+        data_tests:
+          - unique
+          - not_null
+      - name: eventdate
+        description: "The date an event takes place."
+      - name: eventid
+        description: "The unique identifier of an event."
+      - name: eventname
+        description: "The name of the event."
+      - name: venue_id
+        description: "The unique identifier of a venue."
+      - name: venuename
+        description: "The name of a venue."
+      - name: pricelevel
+        description: "The price level of a specific type of seat."
+      - name: section
+        description: "A specific section of the venue"
+        data_tests:
+          - not_null
+      - name: rownumber
+        description: "The number (identification) of a row in the venue"
+        data_tests:
+          - not_null
+      - name: startseat
+        description: "The first seat reserved in a specific transaction"
+      - name: endseat
+        description: "The last seat reserved in a specific transaction"
+      - name: seat
+        description: "A specific seat in a row in the venue"
+      - name: quantity
+        description: "The number of tickets reserved in a transaction"
+      - name: price
+        description: "The price of a ticket"
+      - name: revenue
+        description: "The revenue generated from this transaction"
+      - name: posstatus
+        description: "The status of the transaction"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["Sold"]

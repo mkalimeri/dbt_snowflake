@@ -1,0 +1,58 @@
+version: 1
+
+seeds:
+  - name: event
+    description: "A reference table where events are listed"
+    config:
+      database: BRONZE
+      schema: MANUAL_INPUT
+    columns:
+      - name: EventId
+        description: "The unique identifier for the event. This is the primary key."
+        data_tests:
+          - not_null
+          - unique
+      - name: VenueId
+        description: "The foreign key referencing the venue this event takes place"
+        data_tests:
+          - not_null
+      - name: EventDate
+        description: "The date the event takes place"
+        data_tests:
+          - not_null
+      - name: EventName
+        description: "The name of the event"
+        data_tests:
+          - not_null
+
+  - name: venue
+    description: "A reference table listing the venues events take place."
+    config:
+      database: BRONZE
+      schema: MANUAL_INPUT
+    columns:
+      - name: Id
+        description: "The unique identifier for the venue. This is the primary key."
+        tests:
+          - not_null
+          - unique
+      - name: VenueName
+        description: "The name of the venue"
+        tests:
+          - not_null
+      - name: PriceLevel
+        description: "The price level of the section/row combination at this venue"
+        tests:
+          - not_null
+      - name: Section
+        description: "A section of the venue"
+        tests:
+          - not_null
+      - name: RowNumber
+        description: "A row number at the venue"
+        tests:
+          - not_null
+      - name: Seat
+        description: "A seat at the venue"
+        tests:
+          - not_null

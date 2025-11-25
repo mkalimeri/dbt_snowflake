@@ -1,0 +1,4 @@
+ListingId,OrderDate,EventId,EventDate,Section,Row,StartSeat,EndSeat,Quantity,Price,PosStatus
+1284,11/1/2025,0010987,2025-11-09,201,B,1,2,2,202.45,Sold
+9824,7/2/2025,0847389,2026-07-03,2,A,12,15,4,1340.53,Sold
+4821,11/19/2025,1472824,2026-02-11,100,AA,NULL,NULL,1,0.00,Cancelled

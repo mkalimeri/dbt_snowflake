@@ -1,0 +1,8 @@
+version: 1
+
+sources:
+  - name: ticketing_data
+    database: PROD_RAW
+    schema: ticketing_data
+    tables:
+      - name: inventory

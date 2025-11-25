@@ -1,0 +1,56 @@
+version: 1
+
+models:
+  - name: bronze__vw_inventory
+    description: "Model that contains individual transaction information"
+    config:
+      database: BRONZE
+      schema: TCK_DATA
+    columns:
+      - name: ListingId
+        description: "The unique identifier of this listing. The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: OrderDate
+        description: "The date the transaction was performed"
+        data_tests:
+          - not_null
+      - name: EventId
+        description: "The foreign key referencing the event this transaction was made for"
+        data_tests:
+          - not_null
+      - name: EventDate
+        description: "The date the event takes place"
+        data_tests:
+          - not_null
+      - name: Section
+        description: "The section of the venue for this transaction"
+        data_tests:
+          - not_null
+      - name: Row
+        description: "The row of the venue for this transaction"
+        data_tests:
+          - not_null
+      - name: StartSeat
+        description: "The start seat on the row for this transaction"
+        data_tests:
+          - not_null
+      - name: EndSeat
+        description: "The end seat on the row for this transaction"
+        data_tests:
+          - not_null
+      - name: Quantity
+        description: "The number of tickets ordered"
+        data_tests:
+          - not_null
+      - name: Price
+        description: "The price paid for this purchase"
+        data_tests:
+          - not_null
+      - name: PosStatus
+        description: "The status of the transaction"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["Sold", "Cancelled", "Other"]
